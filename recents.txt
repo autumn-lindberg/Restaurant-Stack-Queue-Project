@@ -1,0 +1,5 @@
+Barack Obama,4,n,1
+Jane Doe,2,n,1
+George Lucas,5,w,1
+Napoleon Bonaparte,9,n,1
+Jekyll Hyde,2,c,1

@@ -1,0 +1,126 @@
+Name: Autumn Valls
+Assignment: Project 2
+Professor: Li Liang
+
+///////////////////////////// PURPOSE /////////////////////////////////
+
+The purpose of this document is to examine the planning process that
+went into creating project two. Project two is an implementation of
+both a stack and a queue. The queue is implemented using a circular
+linked list, while the stack is implemented using an dynamically sized
+array.
+
+////////////////////////////// SCOPE //////////////////////////////////
+
+Throughout this document, we will take a look at the thought process
+behind creating each element of project two. We will examine how each
+abstract data type was designed, and explain the memory management 
+optimization techniques that will be used to implement the classes.
+Additionally, we will evaluate the design of the user experience and 
+how to create a pleasant environment for testing and grading the program.
+
+////////////////////////////// INDEX ///////////////////////////////////
+
+    
+    1   -   The Party Class
+
+                Design
+                Memory Management
+
+
+    2   -   The Queue Class
+
+								Design
+                Memory Management
+
+
+    3   -   The Stack Class
+
+                Design
+                Memory Management
+
+
+    4   -   User Experience
+
+                Encapsulation
+
+
+/////////////////////  1   -   The Party Class  /////////////////////////
+
+The party class represents a group of guests that want to dine together at
+a restaurant. Its private interface consists of properties that represent
+the name of the guest that made the reservation, the number of people in
+their party, if they need any accomodations, and if the reserving guest
+would like to receive promotions after they leave the restaurant. The public
+interface consists of getters and setters for each of the properties, as
+well as overloaded output and assignment operators. 
+
+In addition to the overloaded operators, the public interface will have a
+default, copy, and parameterized constructor to ensure memory efficiency.
+The only property that uses dynamic memory is the name property. In the
+destructor and the copy assignment operator, the first operation to happen
+is to delete any dynamic memory if it exists.
+
+/////////////////////  2   -   The Queue Class  /////////////////////////
+
+The Queue class is designed to represent the waiting list one might see
+when going to a popular restaurant. The queue's public interface accurately 
+reflects the way a wait list would work. Its private interface includes a
+node struct to encapsulate the data for a party, and the node struct includes
+some simple constructors and a destructor to ensure memory efficiency.
+Additionally, the pointers are stored for both the front and the rear nodes
+so that enqueueing and dequeueing are kept simple. The public interface
+consists of constructors and destructors, as well as functions that one might
+see for a queue (enequeue, dequeue, peek, and display). The dequeue function
+automatically callse the stack's dequeue function if they opted yes to
+promotions.
+
+To ensure that the Queue class will be memory efficient, destructors are
+implemented for both the Queue class and its node. The destructor for the
+Queue class will cycle through the list and delete every node, which in turn
+calls the destructor written for the node. Additionally, the copy constructor
+and copy assignment operators make copies of dynamic data instead of just
+sharing pointers. This will prevent bad output and segmentation faults if
+there are multiple queues.
+
+/////////////////////  3   -   The Stack Class  ////////////////////////
+
+The Stack class is used to represent recent guests at the popular restaunt
+mentioned earlier. Its private interface includes an array of pointers to
+the party class, and it also includes integers to keep track of the number
+of guests currently in the stack, as well as what the current capacity of
+the stack is. If the stack doesn't have enough space in the array to hold
+another party, there is also an expand function in the private interface.
+The expand function doubles the size of the array and copies the data into
+the bigger array. It's in the private interface because it would be called
+automatically, not ever by the user.
+
+As for memory management, each party will be dynamically allocated. Each
+party occupies one index in the array. Pushing onto the stack takes in a
+dynamically allocated party and inserts it into the next available spot in
+the array. The destructor cycles through each cell in the array and deletes
+its data. It then deletes the array itself, because it too is dynamically
+allocated.
+
+///////////////////  4   -   The User Experience  //////////////////////
+
+The user experience will involve an easy-to-use menu where the user can
+select the operation that they wish to perform on the The stack and queue.
+The best thing about this is that the operations are limited to what the
+stack and queue are capable of doing. A party can only be added to the
+rear of he queue, 
+
+Helper functions are implemened to make the input process easier. In my
+helper directory, there are getter functions to get input from the user
+for int, char, and char arrays (right sized input). Additionally, the same
+helper functions are implemented for getting int, char, and char arrays from
+an input file. The implementations for getting input from a file include a
+parameter for the delimeter to read until.
+
+The program is designed so that main() is very easy to read, and everything
+is encapsulated into functions to ensure that. Functions are accurately
+named to describe what they do, and comments are written to clarify the purpose
+of each function written.
+
+
+

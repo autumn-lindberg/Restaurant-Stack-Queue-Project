@@ -1,0 +1,95 @@
+Name: Autumn Valls
+Assignment: Project 2
+Professor: Li Liang
+
+///////////////////////////// PURPOSE /////////////////////////////////
+
+The purpose of this document is to analyze the efficiency of the program
+written for project 2. Project 2 was an implementation of a stack and a
+queue that is used to represent currenty and recent parties at a popular
+restaurant, and included operations to perform on them like enqueing,
+dequeueing, peeking, popping, pushing, printing, and editing.
+
+////////////////////////////// SCOPE //////////////////////////////////
+
+In this document we will analyze how well a queue works to represent guests
+waiting at a restaurant, and how well a stack works to represent guests 
+that have recently visited that restaurant. Additionally, we will ponder
+possible solutions to shortfalls in these representations.
+
+/////////////////////////////// INDEX ////////////////////////////////
+
+
+    1   -   Queues
+
+		Benefits
+		Drawbacks
+
+
+    2   -   Stacks
+
+		Benefits
+		rawbacks
+
+
+    3   -   Better Solutions
+
+		Queues
+		Stacks
+
+
+///////////////////////// 1   -   Queues /////////////////////////////
+
+A queue is an excellent data structure for representing the parties
+waiting in line for a table at a popular restaurant. The most recent
+parties to arrive are at the back of the queue, while the parties that
+have been waiting longest for their table are at the front of the queue.
+Queues are incredibly memory efficient, and nearly all operations (enqueue,
+dequeue, and peek) take O(1) time because there is only one operation done.
+
+However, the problem with the queue data structure is that it doesn't
+quite accurately reflect how seating parties would work at a popular
+restaurant. In reality, parties may be seated (dequeue'd) at different
+times based on their party size, not just their place in line. Four
+two-person tables will not be held empty just so that a party of eight
+can be seated. Queue's efficiency is only compromised if a guest needs
+to know their place in line (indexed). It wasn't part of the requirement
+for this program, but indexing a queue requires traversing from the front
+to the back no matter the size.
+
+/////////////////////////  2   -   Stacks /////////////////////////////
+
+The stack class is incredibly memory efficient. All operations (push, pop,
+and peek) take O(1) efficiency, because no matter the size of the data the
+same single operation is done. Because the stack has been implemented using
+an array, indexing for a queue (not required for this program either) can
+be be implemented using binary search tree. This makes indexing very fast!
+Additionally, array elements can be accessed directly, so indexing is even 
+faster if the position in the stack is known.
+
+The only problem I see with the stack class is the removal of old data.
+The longer time ago that the customer visited the restaurant, the less
+likely the owner would be to want to contact those guests. It would be
+helpful to remove parties from the bottom of the stack after a certain
+period of time has passed. I don't see this as a shortfall of the program,
+because that is just how stacks work. Additionally, I could have implemented
+a shrink function that shrinks the array if there is too much free space in
+the array. The pop function would check the size after popping, and shrink
+the array if necessary.
+
+////////////////////  3   -   Better Solutions  ////////////////////////
+
+I think a better solution for the Queue class would be a hash table. Parties
+could be hashed by size, so that each linked list in the hash table could then
+represent its own queue based on size. This more accurately reflects how
+a seating program would work at a restaurant, and would ultimately be at least
+just as efficient.
+
+As for the stack class, the only thing I can see improvement upon would be the
+deletion of old data. Picture the restaurant after five years of having guests
+five days a week. A lot of those people might opt for promotions, but will not
+be contacted by the owner for a long time. The more guests opting for promotions,
+the more guests get stuck on the stack. A cycle of this can lead to some parties
+being permanently stuck on the stack.
+
+
